@@ -4,14 +4,16 @@ public class Book {
     private String name;
     private String author;
     private Integer publishedYear;
-    private String ISBN;
+    private String isbn;
 
+    public Book() {
+    }
 
     public Book(String name, String author, Integer publishedYear, String isbn) {
         this.name = name;
         this.author = author;
         this.publishedYear = publishedYear;
-        this.ISBN = isbn;
+        this.isbn = isbn;
     }
 
     public String getName() {
@@ -28,13 +30,29 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
-
     }
 
+    public Integer getPublishedYear() {
+        return publishedYear;
+    }
+
+    public void setPublishedYear(Integer publishedYear) {
+        this.publishedYear = publishedYear;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    @Override
     public String toString() {
-        return "Название книги = " + name
-                + ", Автор = " + author
-                + ", Год публикации = " + publishedYear;
+        return "Имя: " + name
+                + ", Автор: " + author
+                + ", Год издания: " + publishedYear
+                + ", ISBN: " + isbn;
     }
 }
-

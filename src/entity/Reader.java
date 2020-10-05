@@ -1,7 +1,7 @@
 package entity;
 
 public class Reader {
-    private String name;
+    private String firstname;
     private String lastname;
     private String phone;
 
@@ -9,18 +9,18 @@ public class Reader {
 
     }
 
-    public Reader(String name, String lastname, String phone) {
-        this.name = name;
+    public Reader(String firstname, String lastname, String phone) {
+        this.firstname = firstname;
         this.lastname = lastname;
         this.phone = phone;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getLastname() {
@@ -39,10 +39,10 @@ public class Reader {
         this.phone = phone;
     }
 
+    @Override
     public String toString() {
-        return "Имя = " + name
-                + ", Фамилия = " + lastname
-                + ", Телефон = " + phone;
+        return "Имя: " + firstname
+                + ", Фамилия: " + lastname
+                + ", Телефон: " + phone;
     }
 }
-
