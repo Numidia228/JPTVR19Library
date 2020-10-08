@@ -27,7 +27,6 @@ public class BookSaver {
         }
     }
 
-    Пошел нахуй
     public Book[] loadBooks() {
         Book[] books = new Book[10];
         FileInputStream fis = null;

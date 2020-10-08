@@ -55,8 +55,7 @@ public class History {
         return "Книга = " + book.getName()
                 + ", Читатель: " + reader.getLastname()
                 + ", Дата выдачи: " + giveOutDate
-                + ", Дата возврата: " + returnDate
-                + '}';
+                + ", Дата возврата: " + returnDate;
     }
 
 }

@@ -13,7 +13,7 @@ public class Reader implements Serializable {
     public Reader(String firstname, String lastname, String phone) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.phone = phone; Лох ебаный
+        this.phone = phone;
     }
 
     public String getFirstname() {

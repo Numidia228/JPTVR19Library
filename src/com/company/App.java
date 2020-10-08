@@ -1,4 +1,4 @@
-package com.,company;
+package com.company;
 
 import entity.Book;
 import entity.Reader;
@@ -7,8 +7,6 @@ import java.util.Scanner;
 import tools.*;
 import tools.BookSaver;
 import tools.ReadersStorage;
-
-ХУЙСОБАЧИЙ, КЕРЯ ПИДР
 
 class App {
     private Book[] books = new Book[10];
@@ -36,7 +34,7 @@ class App {
             System.out.println("5. Выдать книгу читателю");
             System.out.println("6. Вернуть книгу читателю");
             System.out.println();
-            System.out.print(Что вы выберите?: ");
+            System.out.print("Что вы выберите?: ");
             Scanner scanner = new Scanner(System.in);
             String task = scanner.nextLine();
             switch (task) {
@@ -75,7 +73,7 @@ class App {
                     for (int i = 0; i < books.length; i++) {
                         if(books[i] != null){
                             System.out.println(i+1+". " + books[i].toString());
-                        ,}
+                        }
                     }
                     System.out.println();
                     System.out.println("--- Конец программы ---");
@@ -97,7 +95,7 @@ class App {
                     }
                     ReadersStorage readersStorage = new ReadersStorage();
                     readersStorage.saveReadersToFile(readers);
-                    System.out.p,rintln();
+                    System.out.println();
                     System.out.println("--- Конец программы ---");
                     break;
 
@@ -108,11 +106,9 @@ class App {
                     System.out.println("-----------------------------------");
                     System.out.println();
 
-                    int i = 0;
-                    for (Reader r : readers) {
+                    for (int i = 0; i < readers.length; i++) {
                         if(readers[i] != null){
-                            System.out.println(i+1+". " + readers[i]);
-                            i++;
+                            System.out.println(i + 1 + ". " + readers[i]);
                         }
                     }
                     System.out.println("--- Конец программы ---");
@@ -120,7 +116,7 @@ class App {
 
                 case "5":
                     System.out.println();
-                    System.out.p,rintln("-----------------------------------");
+                    System.out.println("-----------------------------------");
                     System.out.println("Выбрана задача 5: Выдать книгу читателю");
                     System.out.println("-----------------------------------");
                     System.out.println();
@@ -136,7 +132,7 @@ class App {
                     System.out.println();
 
                     System.out.println("--- Конец программы ---");
-                    break;,
+                    break;
 
                 default:
                     System.out.println("Такой задачи нет");
