@@ -1,18 +1,19 @@
 package entity;
 
-public class Reader {
+import java.io.Serializable;
+
+public class Reader implements Serializable {
     private String firstname;
     private String lastname;
     private String phone;
 
     public Reader() {
-
     }
 
     public Reader(String firstname, String lastname, String phone) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.phone = phone;
+        this.phone = phone; Лох ебаный
     }
 
     public String getFirstname() {

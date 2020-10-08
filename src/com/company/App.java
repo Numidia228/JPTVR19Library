@@ -1,20 +1,32 @@
-package com.company;
+package com.,company;
 
 import entity.Book;
 import entity.Reader;
 import java.util.Scanner;
-import tools.CreatorBook;
-import tools.CreatorReader;
+
+import tools.*;
+import tools.BookSaver;
+import tools.ReadersStorage;
+
+ХУЙСОБАЧИЙ, КЕРЯ ПИДР
 
 class App {
     private Book[] books = new Book[10];
     private Reader[] readers = new Reader[10];
+
+    public App() {
+        BookSaver bookSaver = new BookSaver();
+        books = bookSaver.loadBooks();
+        ReadersStorage rs = new ReadersStorage();
+        readers = rs.loadReadersFromFile();
+    }
+
     public void run() {
         boolean repeat = true;
         System.out.println("--- Библиотека ---");
         System.out.println();
         do {
-            System.out.p      \rintln("-----------------------------------");
+            System.out.println("-----------------------------------");
             System.out.println("Задачи: ");
             System.out.println("0. Выйти из программы");
             System.out.println("1. Добавить новую книгу");
@@ -24,7 +36,7 @@ class App {
             System.out.println("5. Выдать книгу читателю");
             System.out.println("6. Вернуть книгу читателю");
             System.out.println();
-            System.out.print("Что вы выберите?: ");
+            System.out.print(Что вы выберите?: ");
             Scanner scanner = new Scanner(System.in);
             String task = scanner.nextLine();
             switch (task) {
@@ -47,12 +59,11 @@ class App {
                             break;
                         }
                     }
+                    BookSaver bookSaver = new BookSaver();
+                    bookSaver.saveBooks(books);
+                    System.out.println("Книга записана.");
                     System.out.println();
-                    System.out.println("Создана книга: ");
-                    System.out.println("Название книги: " + book.getName());
-                    System.out.println("Автор книги: " + book.getAuthor());
-                    System.out.println("Год издания книги: " + book.getPublishedYear());
-                    System.out.println("ISBN книги: " + book.getIsbn());
+                    System.out.println("--- Конец программы ---");
                     break;
 
                 case "2":
@@ -64,7 +75,7 @@ class App {
                     for (int i = 0; i < books.length; i++) {
                         if(books[i] != null){
                             System.out.println(i+1+". " + books[i].toString());
-                        }
+                        ,}
                     }
                     System.out.println();
                     System.out.println("--- Конец программы ---");
@@ -84,12 +95,9 @@ class App {
                             break;
                         }
                     }
-                    System.out.println();
-                    System.out.println("Создана книга: ");
-                    System.out.println("Имя читателя: " + reader.getFirstname());
-                    System.out.println("Фамилия читателя: " + reader.getLastname());
-                    System.out.println("Номер телефона читателя: " + reader.getPhone());
-                    System.out.println();
+                    ReadersStorage readersStorage = new ReadersStorage();
+                    readersStorage.saveReadersToFile(readers);
+                    System.out.p,rintln();
                     System.out.println("--- Конец программы ---");
                     break;
 
@@ -100,9 +108,11 @@ class App {
                     System.out.println("-----------------------------------");
                     System.out.println();
 
-                    for (int i = 0; i < readers.length; i++) {
+                    int i = 0;
+                    for (Reader r : readers) {
                         if(readers[i] != null){
                             System.out.println(i+1+". " + readers[i]);
+                            i++;
                         }
                     }
                     System.out.println("--- Конец программы ---");
@@ -110,7 +120,7 @@ class App {
 
                 case "5":
                     System.out.println();
-                    System.out.println("-----------------------------------");
+                    System.out.p,rintln("-----------------------------------");
                     System.out.println("Выбрана задача 5: Выдать книгу читателю");
                     System.out.println("-----------------------------------");
                     System.out.println();
@@ -126,7 +136,7 @@ class App {
                     System.out.println();
 
                     System.out.println("--- Конец программы ---");
-                    break;
+                    break;,
 
                 default:
                     System.out.println("Такой задачи нет");
