@@ -8,9 +8,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class ReadersStorage {
+public class ReaderSaver {
 
-    public void saveReadersToFile(Reader[] readers) {
+    public void saveReaders(Reader[] readers) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
 
@@ -25,7 +25,7 @@ public class ReadersStorage {
             System.out.println("Ошибка ввода/вывода");
         }
     }
-    public Reader[] loadReadersFromFile() {
+    public Reader[] loadReaders() {
         Reader[] readers = new Reader[10];
         FileInputStream fis = null;
         ObjectInputStream ois = null;

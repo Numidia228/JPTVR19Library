@@ -4,7 +4,7 @@ import entity.History;
 
 import java.io.*;
 
-public class HistoryCreator {
+public class LibraryManager {
 
     public void saveHistories(History[] histories) {
         FileOutputStream fos = null;
