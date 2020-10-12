@@ -1,20 +1,21 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class History {
+public class History implements Serializable {
     private Book book;
     private Reader reader;
-    private Date giveOutDate;
+    private Date takeOnDate;
     private Date returnDate;
 
     public History() {
     }
 
-    public History(Book book, Reader reader, Date giveOutDate, Date returnDate) {
+    public History(Book book, Reader reader, Date takeOnDate, Date returnDate) {
         this.book = book;
         this.reader = reader;
-        this.giveOutDate = giveOutDate;
+        this.takeOnDate = takeOnDate;
         this.returnDate = returnDate;
     }
 
@@ -42,20 +43,21 @@ public class History {
         this.reader = reader;
     }
 
-    public Date getGiveOutDate() {
-        return giveOutDate;
+    public Date getTakeOnDate() {
+        return takeOnDate;
     }
 
-    public void setGiveOutDate(Date giveOutDate) {
-        this.giveOutDate = giveOutDate;
+    public void setTakeOnDate(Date takeOnDate) {
+        this.takeOnDate = takeOnDate;
     }
 
     @Override
     public String toString() {
-        return "Книга = " + book.getName()
-                + ", Читатель: " + reader.getLastname()
-                + ", Дата выдачи: " + giveOutDate
-                + ", Дата возврата: " + returnDate;
+        return "Название книги = " + book.getName()
+                + ", Читатель = " + reader.getFirstname()+" "+reader.getLastname()
+                + ", Дата взятия книги = " + takeOnDate
+                + ", Дата возврата  =" + returnDate
+                + '}';
     }
 
 }

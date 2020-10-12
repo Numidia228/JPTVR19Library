@@ -1,22 +1,27 @@
 package com.company;
 
 import entity.Book;
+import entity.History;
 import entity.Reader;
 import java.util.Scanner;
 
 import tools.*;
-import tools.BookSaver;
-import tools.ReadersStorage;
+
+
 
 class App {
     private Book[] books = new Book[10];
     private Reader[] readers = new Reader[10];
+    private History[] histories = new History[10];
 
     public App() {
         BookSaver bookSaver = new BookSaver();
         books = bookSaver.loadBooks();
         ReadersStorage rs = new ReadersStorage();
         readers = rs.loadReadersFromFile();
+        HistoryCreator historyCreator = new HistoryCreator();
+        History[] loaderHistories = HistoryCreator.loadHistories();
+
     }
 
     public void run() {
@@ -121,6 +126,50 @@ class App {
                     System.out.println("-----------------------------------");
                     System.out.println();
 
+                    System.out.print("Книги:");
+                    System.out.println();
+                    for (int i = 0; i < books.length; i++) {
+                        if(books[i] != null){
+                            System.out.println(i+1+". " + books[i].toString());
+                        }
+                    }
+                    System.out.println();
+                    System.out.print("Выберите книгу: ");
+                    int bookNumber = scanner.nextInt();
+                    book = books[bookNumber - 1];
+                    System.out.println("--- Список читателей ---");
+                    System.out.println();
+                    for (int i = 0; i < readers.length; i++) {
+                        if(readers[i] != null){
+                            System.out.printf("%d. %s%n",i+1,readers[i].toString());
+                        }
+                    }
+                    System.out.println();
+                    System.out.print("Выберите читателя: ");
+                    int readerNumber = scanner.nextInt();
+                    reader = readers[readerNumber - 1];
+                    History history = new History();
+                    history.setBook(book);
+                    history.setReader(reader);
+                    for (int i = 0; i < histories.length; i++) {
+                        if(histories[i] == null){
+                            histories[i]=history;
+                            break;
+                        }
+                    }
+                    HistoryCreator historyCreator = new HistoryCreator();
+                    historyCreator.saveHistories(histories);
+                    System.out.println("Читателю "
+                            + reader.getFirstname()
+                            + " "
+                            + reader.getLastname()
+                            + " выдана книга "
+                            + '"'
+                            + history.getBook().getName()
+                            + '"'
+                    );
+
+                    System.out.println();
                     System.out.println("--- Конец программы ---");
                     break;
 
