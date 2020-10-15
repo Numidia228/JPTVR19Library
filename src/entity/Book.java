@@ -2,20 +2,18 @@ package entity;
 
 import java.io.Serializable;
 
-public class Book implements Serializable {
+public class Book implements Serializable{
     private String name;
     private String author;
     private Integer publishedYear;
-    private String isbn;
 
     public Book() {
     }
 
-    public Book(String name, String author, Integer publishedYear, String isbn) {
+    public Book(String name, String author, Integer publishedYear) {
         this.name = name;
         this.author = author;
         this.publishedYear = publishedYear;
-        this.isbn = isbn;
     }
 
     public String getName() {
@@ -42,19 +40,10 @@ public class Book implements Serializable {
         this.publishedYear = publishedYear;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
     @Override
     public String toString() {
-        return "Имя: " + name
-                + ", Автор: " + author
-                + ", Год издания: " + publishedYear
-                + ", ISBN: " + isbn;
+        return "Название = " + name
+                + ", Автор = " + author
+                + ", Год публикации = " + publishedYear;
     }
 }

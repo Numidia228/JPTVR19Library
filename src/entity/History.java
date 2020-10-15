@@ -3,7 +3,7 @@ package entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class History implements Serializable {
+public class History implements Serializable{
     private Book book;
     private Reader reader;
     private Date takeOnDate;
@@ -53,17 +53,9 @@ public class History implements Serializable {
 
     @Override
     public String toString() {
-<<<<<<< HEAD
-        return "Название книги = " + book.getName()
-                + ", Читатель = " + reader.getFirstname()+" "+reader.getLastname()
-                + ", Дата взятия книги = " + takeOnDate
-                + ", Дата возврата  =" + returnDate
-                + '}';
-=======
-        return "Книга = " + book.getName()
-                + ", Читатель = " + reader.getFirstname()+" "+reader.getLastname()
-                + ", Дата аренды = " + takeOnDate
-                + ", Даат возврата = " + returnDate;
->>>>>>> b5f7cc4ecd5c46031a299b0b347ca50413069309
+        return "Название=" + book.getName()
+                + ", читатель = " + reader.getName()+" "+reader.getLastname()
+                + ", дата взятия книги = " + takeOnDate
+                + ", дата возврата = " + returnDate;
     }
 }

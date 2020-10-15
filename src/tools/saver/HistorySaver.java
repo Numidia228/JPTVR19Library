@@ -1,6 +1,6 @@
-package tools;
+package tools.saver;
 
-import entity.Reader;
+import entity.History;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,39 +8,39 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class ReaderSaver {
+public class      HistorySaver {
+    private final String fileName = "histories";
 
-    public void saveReaders(Reader[] readers) {
+    public void saveHistories(History[] histories) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
-
         try {
-            fos = new FileOutputStream("readers");
+            fos = new FileOutputStream(fileName);
             oos = new ObjectOutputStream(fos);
-            oos.writeObject(readers);
+            oos.writeObject(histories);
             oos.flush();
         } catch (FileNotFoundException ex) {
-            System.out.println("Файл не найден");
+            System.out.println("Не найден файл");
         } catch (IOException ex) {
             System.out.println("Ошибка ввода/вывода");
         }
     }
-    public Reader[] loadReaders() {
-        Reader[] readers = new Reader[10];
+
+    public History[] loadFile() {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         try {
-            fis = new FileInputStream("readers");
+            fis = new FileInputStream(fileName);
             ois = new ObjectInputStream(fis);
-            return (Reader[]) ois.readObject();
+            return (History[]) ois.readObject();
         } catch (FileNotFoundException ex) {
-            System.out.println("Файл не найден");
-        } catch (IOException ex){
+            System.out.println("Не найден файл");
+        } catch (IOException ex) {
             System.out.println("Ошибка ввода/вывода");
         } catch (ClassNotFoundException ex) {
-            System.out.println("Класс не найден");
+            System.out.println("Ошибка: не найден класс");
         }
-        return readers;
+        return new History[100];
     }
 
 }
