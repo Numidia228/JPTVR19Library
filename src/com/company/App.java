@@ -3,6 +3,7 @@ package com.company;
 import entity.Reader;
 import entity.Book;
 import entity.History;
+import entity.User;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
@@ -17,9 +18,11 @@ class App {
     private Book[] books = new Book[100];
     private Reader[] readers = new Reader[100];
     private History[] histories = new History[100];
+    private User[] users = new User[100];
     private ReaderManager readerManager = new ReaderManager();
     private BookManager bookManager = new BookManager();
     private HistoryManager historyManager = new HistoryManager();
+    private user loginedUser;
 
     public App() {
         BookSaver bookSaver = new BookSaver();
@@ -33,6 +36,7 @@ class App {
     public void run() {
         boolean repeat = true;
         System.out.println("--- Библиотека ---");
+        this.loginedUser = SecureManager.checkTask(users, readers);
         System.out.println();
         do {
             System.out.println("-----------------------------------");
