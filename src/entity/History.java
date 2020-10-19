@@ -6,16 +6,16 @@ import java.util.Date;
 public class History implements Serializable{
     private Book book;
     private Reader reader;
-    private Date takeOnDate;
+    private Date giveOutDate;
     private Date returnDate;
 
     public History() {
     }
 
-    public History(Book book, Reader reader, Date takeOnDate, Date returnDate) {
+    public History(Book book, Reader reader, Date giveOutDate, Date returnDate) {
         this.book = book;
         this.reader = reader;
-        this.takeOnDate = takeOnDate;
+        this.giveOutDate = giveOutDate;
         this.returnDate = returnDate;
     }
 
@@ -43,19 +43,19 @@ public class History implements Serializable{
         this.reader = reader;
     }
 
-    public Date getTakeOnDate() {
-        return takeOnDate;
+    public Date getGiveOutDate() {
+        return giveOutDate;
     }
 
-    public void setTakeOnDate(Date takeOnDate) {
-        this.takeOnDate = takeOnDate;
+    public void setGiveOutDate(Date giveOutDate) {
+        this.giveOutDate = giveOutDate;
     }
 
     @Override
     public String toString() {
         return "Название=" + book.getName()
                 + ", читатель = " + reader.getName()+" "+reader.getLastname()
-                + ", дата взятия книги = " + takeOnDate
+                + ", дата взятия книги = " + giveOutDate
                 + ", дата возврата = " + returnDate;
     }
 }

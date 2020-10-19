@@ -1,42 +1,48 @@
 package com.company;
 
-import entity.Reader;
+import tools.saver.HistorySaver;
+import tools.managers.LibraryManager;
+import tools.saver.BookSaver;
+import tools.managers.ReaderManager;
 import entity.Book;
 import entity.History;
+import entity.Reader;
 import entity.User;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Scanner;
+import security.SecureManager;
 import tools.managers.BookManager;
-import tools.saver.BookSaver;
-import tools.managers.HistoryManager;
-import tools.saver.HistorySaver;
-import tools.managers.ReaderManager;
 import tools.saver.ReaderSaver;
+import tools.saver.UserSaver;
 
 class App {
-    private Book[] books = new Book[100];
-    private Reader[] readers = new Reader[100];
-    private History[] histories = new History[100];
-    private User[] users = new User[100];
-    private ReaderManager readerManager = new ReaderManager();
+    private Book[] books = new Book[10];
+    private Reader[] readers = new Reader[10];
+    private History[] histories = new History[10];
+    private User[] users = new User[10];
     private BookManager bookManager = new BookManager();
-    private HistoryManager historyManager = new HistoryManager();
-    private user loginedUser;
+    private ReaderManager readerManager = new ReaderManager();
+    private LibraryManager libraryManager = new LibraryManager();
+    private BookSaver bookSaver = new BookSaver();
+    private ReaderSaver readerSaver = new ReaderSaver();
+    private HistorySaver historySaver = new HistorySaver();
+    private SecureManager secureManager = new SecureManager();
+    private UserSaver userSaver = new UserSaver();
+
+    private User loginedUser;
 
     public App() {
-        BookSaver bookSaver = new BookSaver();
         books = bookSaver.loadFile();
-        ReaderSaver readerSaver = new ReaderSaver();
         readers = readerSaver.loadFile();
-        HistorySaver historySaver = new HistorySaver();
         histories = historySaver.loadFile();
+        users = userSaver.loadFile();
     }
 
     public void run() {
         boolean repeat = true;
         System.out.println("--- Библиотека ---");
-        this.loginedUser = SecureManager.checkTask(users, readers);
+        System.out.println();
+        System.out.println("==============================================");
+        this.loginedUser = secureManager.checkTask(users, readers);
         System.out.println();
         do {
             System.out.println("-----------------------------------");
@@ -127,10 +133,10 @@ class App {
                     System.out.println("-----------------------------------");
                     System.out.println();
 
-                    History history = historyManager.takeOnBookToReader(books, readers);
-                    historyManager.addBookToArray(history, histories);
-                    historyManager.printListHistories(histories);
-                    HistorySaver historySaver = new HistorySaver();
+                    System.out.println("--- Выдать книгу читателю ---");
+                    History history = libraryManager.takeOnBook(books, readers);
+                    libraryManager.addHistoryToArray(history,histories);
+                    libraryManager.printListReadBooks(histories);
                     historySaver.saveHistories(histories);
 
                     System.out.println();
@@ -144,7 +150,8 @@ class App {
                     System.out.println("-----------------------------------");
                     System.out.println();
 
-                    historyManager.returnBook(histories);
+                    libraryManager = new LibraryManager();
+                    libraryManager.returnBook(histories);
                     historySaver = new HistorySaver();
                     historySaver.saveHistories(histories);
 
@@ -159,7 +166,7 @@ class App {
                     System.out.println("-----------------------------------");
                     System.out.println();
 
-                    historyManager.printListHistories(histories);
+                    libraryManager.printListReadBooks(histories);
 
                     System.out.println();
                     System.out.println("--- Конец программы ---");

@@ -3,7 +3,7 @@ package entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable {
+public class User implements Serializable{
     private String login;
     private String password;
     private String role;
@@ -19,11 +19,13 @@ public class User implements Serializable {
         this.reader = reader;
     }
 
+
+
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String returnDate) {
+    public void setLogin(String login) {
         this.login = login;
     }
 
@@ -31,7 +33,7 @@ public class User implements Serializable {
         return password;
     }
 
-    public void setPassword(String book) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -39,7 +41,7 @@ public class User implements Serializable {
         return role;
     }
 
-    public void setRole(String reader) {
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -47,7 +49,7 @@ public class User implements Serializable {
         return reader;
     }
 
-    public void setReader(Date takeOnDate) {
+    public void setReader(Reader reader) {
         this.reader = reader;
     }
 
@@ -56,6 +58,7 @@ public class User implements Serializable {
         return "Логин = " + login
                 + ", пароль = " + password
                 + ", роль = " + role
-                + ", читатель = " + reader;
+                + ", читатель = " + reader.getName()
+                + " " + reader.getLastname();
     }
 }

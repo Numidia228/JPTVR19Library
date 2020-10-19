@@ -8,6 +8,7 @@ public class UserManager {
     public User createUser() {
         User user = new User();
         Scanner scanner = new Scanner(System.in);
+        System.out.println();
         System.out.println("--- Регистрация пользователя ---");
         System.out.print("Логин: ");
         user.setLogin(scanner.nextLine());
