@@ -11,6 +11,7 @@ import tools.saver.UserSaver;
 public class SecureManager {
 
     private Scanner scanner = new Scanner(System.in);
+    public static enum role {READER, MANAGER};
 
     public User checkTask(User[] users, Reader[] readers) {
 
