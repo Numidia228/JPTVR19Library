@@ -28,7 +28,7 @@ class App {
     private SecureManager secureManager = new SecureManager();
     private UserSaver userSaver = new UserSaver();
 
-    private User loginedUser;
+    private static User loginedUser;
 
     public App() {
         books = bookSaver.loadFile();

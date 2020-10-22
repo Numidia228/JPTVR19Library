@@ -8,14 +8,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class      HistorySaver {
-    private final String fileName = "histories";
+public class HistorySaver {
 
     public void saveHistories(History[] histories) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
-            fos = new FileOutputStream(fileName);
+            fos = new FileOutputStream("histories");
             oos = new ObjectOutputStream(fos);
             oos.writeObject(histories);
             oos.flush();
@@ -30,7 +29,7 @@ public class      HistorySaver {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         try {
-            fis = new FileInputStream(fileName);
+            fis = new FileInputStream("histories");
             ois = new ObjectInputStream(fis);
             return (History[]) ois.readObject();
         } catch (FileNotFoundException ex) {

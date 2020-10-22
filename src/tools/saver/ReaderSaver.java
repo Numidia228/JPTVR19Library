@@ -9,13 +9,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class ReaderSaver {
-    private String fileName = "readers";
 
     public void saveReaders(Reader[] readers) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
-            fos = new FileOutputStream(fileName);
+            fos = new FileOutputStream("readers");
             oos = new ObjectOutputStream(fos);
             oos.writeObject(readers);
             oos.flush();
@@ -30,7 +29,7 @@ public class ReaderSaver {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         try {
-            fis = new FileInputStream(fileName);
+            fis = new FileInputStream("readers");
             ois = new ObjectInputStream(fis);
             return (Reader[]) ois.readObject();
         } catch (FileNotFoundException ex) {
