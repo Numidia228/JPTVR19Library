@@ -57,14 +57,15 @@ public class SecureManager {
 
     private User checkInUser(User[] users) {
         System.out.println("--- Вход в систему ---");
-        System.out.println("Введите логин: ");
+        System.out.println();
+        System.out.print("Введите логин: ");
         String login = scanner.nextLine();
-        System.out.println("Введите пароль: ");
+        System.out.print("Введите пароль: ");
         String password = scanner.nextLine();
         for (int i = 0; i < users.length; i++) {
             User user = users[i];
             if(user == null) continue;
-            if(login.equals(user.getLogin())){//Authetication
+            if(login.equals(user.getLogin())){ //Authetication
                 for (int j = 0; j < 2; j++) {
                     if(password.equals(user.getPassword())){//Authorization
                         return user;
