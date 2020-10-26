@@ -1,18 +1,19 @@
 package tools.saver;
 
 import entity.User;
-
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserSaver {
 
-    public void saveUsers(User[] users) {
+    public void saveUsers(List<User> listUsers) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
             fos = new FileOutputStream("users");
             oos = new ObjectOutputStream(fos);
-            oos.writeObject(users);
+            oos.writeObject(listUsers);
             oos.flush();
         } catch (FileNotFoundException ex) {
             System.out.println("Не найден файл");
@@ -21,14 +22,14 @@ public class UserSaver {
         }
     }
 
-    public User[] loadFile() {
-        User[] users = new User[10];
+    public List<User> loadFile() {
+        List<User>  listUsers = new ArrayList<>();
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         try {
             fis = new FileInputStream("users");
             ois = new ObjectInputStream(fis);
-            users = (User[]) ois.readObject();
+            listUsers = (List<User>) ois.readObject();
         } catch (FileNotFoundException ex) {
             System.out.println("Не найден файл");
         } catch (IOException ex) {
@@ -36,7 +37,7 @@ public class UserSaver {
         } catch (ClassNotFoundException ex) {
             System.out.println("Ошибка: не найден класс");
         }
-        return users;
+        return listUsers;
     }
 
 }

@@ -7,16 +7,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HistorySaver {
 
-    public void saveHistories(History[] histories) {
+    public void saveHistories(List<History> listHistories) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
             fos = new FileOutputStream("histories");
             oos = new ObjectOutputStream(fos);
-            oos.writeObject(histories);
+            oos.writeObject(listHistories);
             oos.flush();
         } catch (FileNotFoundException ex) {
             System.out.println("Не найден файл");

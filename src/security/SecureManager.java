@@ -2,6 +2,7 @@ package security;
 
 import entity.Reader;
 import entity.User;
+import java.util.List;
 import java.util.Scanner;
 import tools.managers.ReaderManager;
 import tools.managers.UserManager;
@@ -11,9 +12,24 @@ import tools.saver.UserSaver;
 public class SecureManager {
 
     private Scanner scanner = new Scanner(System.in);
-    public static enum role {READER, MANAGER};
+    public static enum role {
+        READER,
+        MANAGER
+    };
 
-    public User checkTask(User[] users, Reader[] readers) {
+    public User checkTask(List<User> listUsers, List<Reader> listReaders) {
+        // Предоставим выбор пользователю:
+        //  0. Выход из программы
+        //  1. Регистрация
+        //  2. Вход в систему
+        // спросить у польльзователя логин и пароль.
+        // пройти по массиву пользователей и найти объект User
+        // у которого совпадают логины (Authentication)
+        // - если user не найден -> дадим возможность зарегистрироваться.
+        // сравнить пароли у user.getPassword() и password
+        // -- если совпадают -> возвращаем объект пользователя. (Authorization)
+        // -- иначе дадим еще две попытки ввести пароль, после чего
+        // -- выход из программы System.exit(0);
 
         do{
             String task = this.printCheckTasks();
@@ -23,10 +39,10 @@ public class SecureManager {
                     System.exit(0);
                     break;
                 case "1":
-                    this.registration(users,readers);
+                    this.registration(listUsers,listReaders);
                     break;
                 case "2":
-                    return this.checkInUser(users);
+                    return this.checkInUser(listUsers);
 
                 default:
                     System.out.println("Выберите указанные задачи.");;
@@ -44,29 +60,28 @@ public class SecureManager {
         return numTask;
     }
 
-    private void registration(User[] users, Reader[] readers) {
+    private void registration(List<User> listUsers, List<Reader> listReaders) {
         UserManager userManager = new UserManager();
         User user = userManager.createUser();
-        userManager.addUserToArray(user, users);
+        userManager.addUserToArray(user, listUsers);
         ReaderManager readerManager = new ReaderManager();
-        readerManager.addReaderToArray(user.getReader(), readers);
+        readerManager.addReaderToArray(user.getReader(), listReaders);
         ReaderSaver readerSaver = new ReaderSaver();
-        readerSaver.saveReaders(readers);
+        readerSaver.saveReaders(listReaders);
         UserSaver userSaver = new UserSaver();
-        userSaver.saveUsers(users);
+        userSaver.saveUsers(listUsers);
     }
 
-    private User checkInUser(User[] users) {
+    private User checkInUser(List<User> listUsers) {
         System.out.println("--- Вход в систему ---");
-        System.out.println();
-        System.out.print("Введите логин: ");
+        System.out.println("Введите логин: ");
         String login = scanner.nextLine();
-        System.out.print("Введите пароль: ");
+        System.out.println("Введите пароль: ");
         String password = scanner.nextLine();
-        for (int i = 0; i < users.length; i++) {
-            User user = users[i];
+        for (int i = 0; i < listUsers.size(); i++) {
+            User user = listUsers.get(i);
             if(user == null) continue;
-            if(login.equals(user.getLogin())){ //Authetication
+            if(login.equals(user.getLogin())){//Authetication
                 for (int j = 0; j < 2; j++) {
                     if(password.equals(user.getPassword())){//Authorization
                         return user;
