@@ -1,16 +1,16 @@
 package entity.dbcontroller;
 
 import entity.Reader;
+import entity.factory.ConnectSingleton;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class ReaderFacade extends AbstractFacade<Reader>{
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPTVR19LibraryPU");
-    private EntityManager em = emf.createEntityManager();
+    private EntityManager em;
 
-    public ReaderFacade(Class<Reader> entityClass) {
-        super(entityClass);
+    public ReaderFacade() {
+        super(Reader.class);
+        ConnectSingleton connectSingleton = ConnectSingleton.getInstance();
+        em = connectSingleton.getEntityManager();
     }
 
     @Override

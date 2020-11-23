@@ -1,6 +1,10 @@
 package ui;
 
+import entity.Book;
 import entity.History;
+import entity.Reader;
+import entity.User;
+import java.util.List;
 import java.util.Scanner;
 import tools.creators.BookManager;
 import tools.creators.LibraryManager;

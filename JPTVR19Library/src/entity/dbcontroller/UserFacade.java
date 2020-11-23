@@ -1,16 +1,16 @@
 package entity.dbcontroller;
 
 import entity.User;
+import entity.factory.ConnectSingleton;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
-public class UserFacade extends AbstractFacade<User>{
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPTVR19LibraryPU");
-    private EntityManager em = emf.createEntityManager();
+public class UserFacade extends AbstractFacade<User> {
+    private EntityManager em;
 
-    public UserFacade(Class<User> entityClass) {
-        super(entityClass);
+    public UserFacade() {
+        super(User.class);
+        ConnectSingleton connectSingleton = ConnectSingleton.getInstance();
+        em = connectSingleton.getEntityManager();
     }
 
     @Override

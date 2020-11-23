@@ -1,21 +1,24 @@
 package security;
 
 import entity.User;
-import entity.dbcontroller.UserFacade;
 import java.util.List;
 import java.util.Scanner;
+import entity.dbcontroller.UserFacade;
+import entity.factory.FactoryFacade;
 import tools.creators.UserManager;
 
 public class SecureManager {
 
-    private UserFacade userFacade = new UserFacade(User.class);
     private Scanner scanner = new Scanner(System.in);
+    private UserFacade userFacade = FactoryFacade.getUserFacade();
+
     public static enum role {
         READER,
         MANAGER
     };
 
     public User checkTask() {
+
         do{
             String task = this.printCheckTasks();
             switch (task) {
@@ -48,7 +51,6 @@ public class SecureManager {
     private void registration() {
         UserManager userManager = new UserManager();
         User user = userManager.createUser();
-        userFacade.create(user);
     }
 
     private User checkInUser() {
@@ -65,9 +67,9 @@ public class SecureManager {
         for (int i = 0; i < listUsers.size(); i++) {
             User user = listUsers.get(i);
             if(user == null) continue;
-            if(login.equals(user.getLogin())){//Authetication
+            if(login.equals(user.getLogin())){ //Authetication
                 for (int j = 0; j < 2; j++) {
-                    if(password.equals(user.getPassword())){//Authorization
+                    if(password.equals(user.getPassword())){ //Authorization
                         return user;
                     }else{
                         System.out.print("Попробуй еще раз: ");

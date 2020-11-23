@@ -2,12 +2,14 @@ package tools.creators;
 
 import entity.Book;
 import entity.dbcontroller.BookFacade;
+import entity.factory.FactoryFacade;
+
 import java.util.List;
 import java.util.Scanner;
 
 public class BookManager {
-    private BookFacade bookFacade = new BookFacade(Book.class);
     private Scanner scanner = new Scanner(System.in);
+    private BookFacade bookFacade = FactoryFacade.getBookFacade();
 
     public Book createBook() {
         Book book = new Book();
@@ -34,5 +36,4 @@ public class BookManager {
             }
         }
     }
-
 }

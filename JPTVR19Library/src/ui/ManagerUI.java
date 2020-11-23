@@ -12,9 +12,8 @@ import tools.creators.UserManager;
 public class ManagerUI {
     private BookManager bookManager = new BookManager();
     private ReaderManager readerManager = new ReaderManager();
-    private UserManager userManager = new UserManager();
     private LibraryManager libraryManager = new LibraryManager();
-
+    private UserManager userManager = new UserManager();
 
     public void getManagerUI(){
         boolean repeat = true;
@@ -38,7 +37,7 @@ public class ManagerUI {
                     break;
                 case "1":
                     System.out.println("--- Добавить новую книгу ---");
-                    Book book = bookManager.createBook();
+                    bookManager.createBook();
                     break;
                 case "2":
                     System.out.println("--- Список книг ---");
@@ -46,7 +45,7 @@ public class ManagerUI {
                     break;
                 case "3":
                     System.out.println("--- Зарегистрировать читателя ---");
-                    User user = userManager.createUser();
+                    userManager.createUser();
                     break;
                 case "4":
                     System.out.println("--- Список читателей ---");
@@ -54,7 +53,7 @@ public class ManagerUI {
                     break;
                 case "5":
                     System.out.println("--- Выдать книгу читателю ---");
-                    History history = libraryManager.takeOnBook();
+                    libraryManager.takeOnBook();
                     break;
                 case "6":
                     System.out.println("--- Вернуть книгу в библиотеку ---");

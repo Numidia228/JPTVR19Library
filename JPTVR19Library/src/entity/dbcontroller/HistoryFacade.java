@@ -2,17 +2,17 @@ package entity.dbcontroller;
 
 import entity.History;
 import entity.Reader;
+import entity.factory.ConnectSingleton;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class HistoryFacade extends AbstractFacade<History>{
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPTVR19LibraryPU");
-    private EntityManager em = emf.createEntityManager();
+    private EntityManager em;
 
-    public HistoryFacade(Class<History> entityClass) {
-        super(entityClass);
+    public HistoryFacade() {
+        super(History.class);
+        ConnectSingleton connectSingleton = ConnectSingleton.getInstance();
+        em = connectSingleton.getEntityManager();
     }
 
     @Override

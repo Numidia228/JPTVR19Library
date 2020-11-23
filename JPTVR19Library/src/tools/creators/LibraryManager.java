@@ -4,26 +4,24 @@ import entity.Book;
 import entity.History;
 import entity.Reader;
 import entity.User;
-import entity.dbcontroller.BookFacade;
-import entity.dbcontroller.HistoryFacade;
-import entity.dbcontroller.ReaderFacade;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Scanner;
+
+import entity.dbcontroller.BookFacade;
+import entity.dbcontroller.HistoryFacade;
+import entity.dbcontroller.ReaderFacade;
+import entity.factory.FactoryFacade;
 import jptvr19library.App;
 
-/**
- *
- * @author Melnikov
- */
 public class LibraryManager {
     private Scanner scanner = new Scanner(System.in);
     private ReaderManager readerManager = new ReaderManager();
     private BookManager bookManager = new BookManager();
-    private ReaderFacade readerFacade = new ReaderFacade(Reader.class);
-    private BookFacade bookFacade = new BookFacade(Book.class);
-    private HistoryFacade historyFacade = new HistoryFacade(History.class);
+    private HistoryFacade historyFacade = FactoryFacade.getHistoryFacade();
+    private ReaderFacade readerFacade = FactoryFacade.getReaderFacade();
+    private BookFacade bookFacade = FactoryFacade.getBookFacade();
 
     public History takeOnBook() {
         History history = new History();

@@ -2,20 +2,18 @@ package tools.creators;
 
 import entity.Reader;
 import entity.User;
-import entity.dbcontroller.ReaderFacade;
-import entity.dbcontroller.UserFacade;
 import java.util.List;
 import java.util.Scanner;
+
+import entity.dbcontroller.ReaderFacade;
+import entity.dbcontroller.UserFacade;
+import entity.factory.FactoryFacade;
 import security.SecureManager;
 
-/**
- *
- * @author Melnikov
- */
 public class UserManager {
-    private ReaderFacade readerFacade = new ReaderFacade(Reader.class);
-    private UserFacade userFacade = new UserFacade(User.class);
-    private Scanner scanner = new Scanner(System.in);
+        private Scanner scanner = new Scanner(System.in);
+        private UserFacade userFacade = FactoryFacade.getUserFacade();
+        private ReaderFacade readerFacade = FactoryFacade.getReaderFacade();
 
     public User createUser() {
         ReaderManager readerManager = new ReaderManager();
@@ -60,5 +58,4 @@ public class UserManager {
             }
         }
     }
-
 }

@@ -2,16 +2,15 @@ package tools.creators;
 
 import entity.Reader;
 import entity.dbcontroller.ReaderFacade;
+import entity.factory.FactoryFacade;
+
 import java.util.List;
 import java.util.Scanner;
 
-/**
- *
- * @author Melnikov
- */
 public class ReaderManager {
-    private ReaderFacade readerFacade = new ReaderFacade(Reader.class);
     private Scanner scanner = new Scanner(System.in);
+    private ReaderFacade readerFacade = FactoryFacade.getReaderFacade();
+
     public Reader createReader() {
         Reader reader = new Reader();
         System.out.println("--- Регистрация нового пользователя ---");

@@ -1,7 +1,7 @@
+
 package entity;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +29,7 @@ public class User implements Serializable{
         this.reader = reader;
     }
 
-
+   
 
     public String getLogin() {
         return login;
@@ -65,10 +65,10 @@ public class User implements Serializable{
 
     @Override
     public String toString() {
-        return "User{"
-                + "login=" + login
-                + ", password=" + password
-                + ", role=" + role
+        return "User{" 
+                + "login=" + login 
+                + ", password=" + password 
+                + ", role=" + role 
                 + ", reader=" + reader.getFirstname()
                 + " " + reader.getLastname()
                 + '}';
@@ -81,46 +81,5 @@ public class User implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.id);
-        hash = 23 * hash + Objects.hashCode(this.login);
-        hash = 23 * hash + Objects.hashCode(this.password);
-        hash = 23 * hash + Objects.hashCode(this.role);
-        hash = 23 * hash + Objects.hashCode(this.reader);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final User other = (User) obj;
-        if (!Objects.equals(this.login, other.login)) {
-            return false;
-        }
-        if (!Objects.equals(this.password, other.password)) {
-            return false;
-        }
-        if (!Objects.equals(this.role, other.role)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.reader, other.reader)) {
-            return false;
-        }
-        return true;
-    }
-
+    
 }
